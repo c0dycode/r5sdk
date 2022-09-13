@@ -35,6 +35,7 @@ History:
 #include "vstdlib/callback.h"
 #include "gameui/IBrowser.h"
 #include "public/edict.h"
+#include "public/utility/utility.h"
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -263,6 +264,18 @@ void CBrowser::BrowserPanel(void)
                 }
             }
         }
+
+        // Sort Serverlist, if sorting was requested by the user
+        const auto sortSpecs = ImGui::TableGetSortSpecs();
+        if (sortSpecs != nullptr && sortSpecs->SpecsDirty)
+        {
+            if (sortSpecs->SpecsCount > 0)
+            {
+                SortServerList(sortSpecs);
+                sortSpecs->SpecsDirty = false;
+            }
+        }
+
         g_pServerListManager->m_Mutex.unlock();
 
         ImGui::EndTable();
@@ -706,5 +719,52 @@ void CBrowser::SetStyleVar(void)
     ImGui::SetNextWindowSize(ImVec2(928.f, 524.f), ImGuiCond_FirstUseEver);
     ImGui::SetWindowPos(ImVec2(-500.f, 50.f), ImGuiCond_FirstUseEver);
 }
+
+void CBrowser::SortServerList(ImGuiTableSortSpecs* pSortSpecs) const
+{
+    auto serverList = g_pServerListManager->m_vServerList;
+    switch (pSortSpecs->Specs->ColumnIndex)
+    {
+    // Name
+    case 0:
+        if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
+            std::sort(serverList.begin(), serverList.end(), CompareHostname);
+        else
+            std::sort(serverList.rbegin(), serverList.rend(), CompareHostname);
+        break;
+    // Map
+    case 1:
+        if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
+            std::sort(serverList.begin(), serverList.end(), CompareMapname);
+        else
+            std::sort(serverList.rbegin(), serverList.rend(), CompareMapname);
+        break;
+    // Playlist
+    case 2:
+        if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
+            std::sort(serverList.begin(), serverList.end(), CompareHostname);
+        else
+            std::sort(serverList.rbegin(), serverList.rend(), CompareHostname);
+        break;
+    //Players
+    case 3:
+        if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
+            std::sort(serverList.begin(), serverList.end(), ComparePlayers);
+        else
+            std::sort(serverList.rbegin(), serverList.rend(), ComparePlayers);
+        break;
+    // Port
+    case 4:
+        if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
+            std::sort(serverList.begin(), serverList.end(), ComparePort);
+        else
+            std::sort(serverList.rbegin(), serverList.rend(), ComparePort);
+        break;
+    default:
+        break;
+    }
+    g_pServerListManager->m_vServerList = serverList;
+}
+
 
 CBrowser* g_pBrowser = new CBrowser();

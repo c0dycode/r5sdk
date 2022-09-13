@@ -36,6 +36,8 @@ public:
     void SetHostName(const char* pszHostName);
     virtual void SetStyleVar(void);
 
+    void SortServerList(ImGuiTableSortSpecs* pSortSpecs) const;
+
 
     const char* m_pszBrowserTitle = nullptr;
     bool m_bActivate     = false;
