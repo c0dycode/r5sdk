@@ -35,7 +35,6 @@ History:
 #include "vstdlib/callback.h"
 #include "gameui/IBrowser.h"
 #include "public/edict.h"
-#include "public/utility/utility.h"
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -272,7 +271,6 @@ void CBrowser::BrowserPanel(void)
             if (sortSpecs->SpecsCount > 0)
             {
                 SortServerList(sortSpecs);
-                sortSpecs->SpecsDirty = false;
             }
         }
 
@@ -722,47 +720,48 @@ void CBrowser::SetStyleVar(void)
 
 void CBrowser::SortServerList(ImGuiTableSortSpecs* pSortSpecs) const
 {
-    auto serverList = g_pServerListManager->m_vServerList;
+    vector<NetGameServer_t> serverList = g_pServerListManager->m_vServerList;
     switch (pSortSpecs->Specs->ColumnIndex)
     {
     // Name
     case 0:
         if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
-            std::sort(serverList.begin(), serverList.end(), CompareHostname);
+            std::sort(serverList.begin(), serverList.end(), NetGameServer_t::CompareHostname);
         else
-            std::sort(serverList.rbegin(), serverList.rend(), CompareHostname);
+            std::sort(serverList.rbegin(), serverList.rend(), NetGameServer_t::CompareHostname);
         break;
     // Map
     case 1:
         if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
-            std::sort(serverList.begin(), serverList.end(), CompareMapname);
+            std::sort(serverList.begin(), serverList.end(), NetGameServer_t::CompareMapname);
         else
-            std::sort(serverList.rbegin(), serverList.rend(), CompareMapname);
+            std::sort(serverList.rbegin(), serverList.rend(), NetGameServer_t::CompareMapname);
         break;
     // Playlist
     case 2:
         if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
-            std::sort(serverList.begin(), serverList.end(), CompareHostname);
+            std::sort(serverList.begin(), serverList.end(), NetGameServer_t::CompareHostname);
         else
-            std::sort(serverList.rbegin(), serverList.rend(), CompareHostname);
+            std::sort(serverList.rbegin(), serverList.rend(), NetGameServer_t::CompareHostname);
         break;
     //Players
     case 3:
         if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
-            std::sort(serverList.begin(), serverList.end(), ComparePlayers);
+            std::sort(serverList.begin(), serverList.end(), NetGameServer_t::ComparePlayers);
         else
-            std::sort(serverList.rbegin(), serverList.rend(), ComparePlayers);
+            std::sort(serverList.rbegin(), serverList.rend(), NetGameServer_t::ComparePlayers);
         break;
     // Port
     case 4:
         if (pSortSpecs->Specs->SortDirection == ImGuiSortDirection_Ascending)
-            std::sort(serverList.begin(), serverList.end(), ComparePort);
+            std::sort(serverList.begin(), serverList.end(), NetGameServer_t::ComparePort);
         else
-            std::sort(serverList.rbegin(), serverList.rend(), ComparePort);
+            std::sort(serverList.rbegin(), serverList.rend(), NetGameServer_t::ComparePort);
         break;
     default:
         break;
     }
+    pSortSpecs->SpecsDirty = false;
     g_pServerListManager->m_vServerList = serverList;
 }
 

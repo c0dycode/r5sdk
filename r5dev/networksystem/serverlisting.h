@@ -35,4 +35,26 @@ struct NetGameServer_t
 	string m_svCachedId;
 
 	//vector<NetGameMod_t> m_vMods;
+
+	static bool CompareHostname (const NetGameServer_t &a, const NetGameServer_t &b) {
+		return a.m_svHostName < b.m_svHostName;
+	}
+
+	static bool CompareMapname(const NetGameServer_t &a, const NetGameServer_t &b)  {
+		return a.m_svHostMap < b.m_svHostMap;
+	}
+
+	static bool ComparePlaylist (const NetGameServer_t &a, const NetGameServer_t &b)  {
+		return a.m_svPlaylist < b.m_svPlaylist;
+	}
+
+	static bool ComparePlayers (const NetGameServer_t &a, const NetGameServer_t &b)  {
+		const int playersA = atoi(a.m_svPlayerCount.c_str());
+		const int playersB = atoi(b.m_svPlayerCount.c_str());
+		return playersA < playersB;
+	}
+
+	static bool ComparePort (const NetGameServer_t &a, const NetGameServer_t &b)  {
+		return a.m_svGamePort < b.m_svGamePort;
+	}
 };

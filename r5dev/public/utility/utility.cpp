@@ -852,26 +852,3 @@ std::chrono::nanoseconds IntervalToDuration(const float flInterval)
     using fsec = duration<float>;
     return round<nanoseconds>(fsec{ flInterval });
 }
-
-
-bool CompareHostname (const NetGameServer_t &a, const NetGameServer_t &b) {
-    return a.m_svHostName < b.m_svHostName;
-}
-
-bool CompareMapname(const NetGameServer_t &a, const NetGameServer_t &b)  {
-    return a.m_svHostMap < b.m_svHostMap;
-}
-
-bool ComparePlaylist (const NetGameServer_t &a, const NetGameServer_t &b)  {
-    return a.m_svPlaylist < b.m_svPlaylist;
-}
-
-bool ComparePlayers (const NetGameServer_t &a, const NetGameServer_t &b)  {
-    int playersA = atoi(a.m_svPlayerCount.c_str());
-    int playersB = atoi(b.m_svPlayerCount.c_str());
-    return playersA < playersB;
-}
-
-bool ComparePort (const NetGameServer_t &a, const NetGameServer_t &b)  {
-    return a.m_svGamePort < b.m_svGamePort;
-}

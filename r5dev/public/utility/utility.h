@@ -1,5 +1,4 @@
 #pragma once
-#include "networksystem/serverlisting.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // Internals
@@ -74,8 +73,3 @@ string PrintPercentageEscape(const string& svInput);
 std::chrono::nanoseconds IntervalToDuration(const float flInterval);
 
 /////////////////////////////////////////////////////////////////////////////
-bool CompareHostname (const NetGameServer_t &a, const NetGameServer_t &b);
-bool CompareMapname(const NetGameServer_t &a, const NetGameServer_t &b);
-bool ComparePlaylist (const NetGameServer_t &a, const NetGameServer_t &b);
-bool ComparePlayers (const NetGameServer_t &a, const NetGameServer_t &b);
-bool ComparePort (const NetGameServer_t &a, const NetGameServer_t &b);
