@@ -29,6 +29,7 @@
     <ClCompile Include="..\ebisusdk\EbisuSDK.cpp" />
     <ClCompile Include="..\engine\client\client.cpp" />
     <ClCompile Include="..\engine\client\clientstate.cpp" />
+    <ClCompile Include="..\engine\client\cl_ents_parse.cpp" />
     <ClCompile Include="..\engine\client\cl_rcon.cpp" />
     <ClCompile Include="..\engine\clockdriftmgr.cpp" />
     <ClCompile Include="..\engine\cmodel_bsp.cpp" />
@@ -48,6 +49,7 @@
     <ClCompile Include="..\engine\sys_dll2.cpp" />
     <ClCompile Include="..\engine\sys_engine.cpp" />
     <ClCompile Include="..\engine\sys_getmodes.cpp" />
+    <ClCompile Include="..\engine\sys_mainwind.cpp" />
     <ClCompile Include="..\engine\sys_utils.cpp" />
     <ClCompile Include="..\filesystem\basefilesystem.cpp" />
     <ClCompile Include="..\filesystem\filesystem.cpp" />
@@ -170,6 +172,7 @@
     <ClInclude Include="..\ebisusdk\EbisuSDK.h" />
     <ClInclude Include="..\engine\client\client.h" />
     <ClInclude Include="..\engine\client\clientstate.h" />
+    <ClInclude Include="..\engine\client\cl_ents_parse.h" />
     <ClInclude Include="..\engine\client\cl_main.h" />
     <ClInclude Include="..\engine\client\cl_rcon.h" />
     <ClInclude Include="..\engine\clockdriftmgr.h" />
@@ -195,6 +198,7 @@
     <ClInclude Include="..\engine\sys_dll2.h" />
     <ClInclude Include="..\engine\sys_engine.h" />
     <ClInclude Include="..\engine\sys_getmodes.h" />
+    <ClInclude Include="..\engine\sys_mainwind.h" />
     <ClInclude Include="..\engine\sys_utils.h" />
     <ClInclude Include="..\filesystem\basefilesystem.h" />
     <ClInclude Include="..\filesystem\filesystem.h" />
@@ -263,6 +267,7 @@
     <ClInclude Include="..\public\ifile.h" />
     <ClInclude Include="..\public\ifilesystem.h" />
     <ClInclude Include="..\public\iframetask.h" />
+    <ClInclude Include="..\public\igame.h" />
     <ClInclude Include="..\public\ihandleentity.h" />
     <ClInclude Include="..\public\inetchannel.h" />
     <ClInclude Include="..\public\inetmessage.h" />
